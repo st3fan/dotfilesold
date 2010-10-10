@@ -42,10 +42,10 @@ export IRCNICK=st3fan
 
 setup_paths() {
   if [ -d "$1/bin" ]; then
-    export PATH="$PATH:$1"
+    export PATH="$PATH:$1/bin"
   fi
   if [ -d "$1/man" ]; then
-    export MANPATH="$MANPATH:$1"
+    export MANPATH="$MANPATH:$1/man"
   fi
 }
 
@@ -80,5 +80,16 @@ if [ -x "`which ec2din`" ]; then
     | grep ^INSTANCE \
     | grep -v terminated \
     | awk '{ printf("%s %s %s %s\n", $2, $4, $5, $9) }'
+fi
+
+# Setup completion
+
+autoload -U compinit
+compinit
+
+# Source in local setup
+
+if [ -f ".zshrc.local" ]; then
+  source .zshrc.local
 fi
 
