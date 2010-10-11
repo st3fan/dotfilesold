@@ -9,6 +9,7 @@ setopt append_history				# Append history (for multiple sessions)
 setopt hist_ignore_dups				# Ignore duplicate commands
 setopt extended_history				# Save timestamps in history file
 setopt no_beep						# No beeping. I hate beeping shells.
+setopt complete_in_word				# Complete inside words
 
 watch=(notme)						# Watch others
 
@@ -40,6 +41,9 @@ setup_paths() {
   fi
   if [ -d "$1/man" ]; then
     export MANPATH="$MANPATH:$1/man"
+  fi
+  if [ -d "$1/share/info" ]; then
+    export INFOPATH="$INFOPATH:$1/share/info"
   fi
 }
 
