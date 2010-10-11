@@ -1,0 +1,7 @@
+[user]
+	name = Stefan Arentz
+	email = stefan@arentz.ca
+[core]
+	excludesfile = ~/.gitignore
+[color]
+	ui = true
