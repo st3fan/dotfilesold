@@ -1,0 +1,3 @@
+# screenrc - stefan@arentz.ca
+
+escape ^pp			# This works better with Emacs
