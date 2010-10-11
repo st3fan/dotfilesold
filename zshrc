@@ -14,8 +14,14 @@ watch=(notme)						# Watch others
 
 # Aliases
 
+alias si='sudo su -'
+
 alias ll='ls -l'
 alias la='ls -la'
+
+alias -g m='more'
+alias -g h='head'
+alias -g t='tail'
 
 alias slime='emacs -f slime'
 alias news='emacs -f gnus'
