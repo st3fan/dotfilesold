@@ -10,6 +10,8 @@ setopt hist_ignore_dups				# Ignore duplicate commands
 setopt extended_history				# Save timestamps in history file
 setopt no_beep						# No beeping. I hate beeping shells.
 
+watch=(notme)						# Watch others
+
 # Aliases
 
 alias ll='ls -l'
@@ -23,14 +25,6 @@ alias news='emacs -f gnus'
 HISTFILE=~/.zhistory				# History file
 HISTSIZE=1000						# Number of lines rememberd
 SAVEHIST=1000						# Number of lines stored in the file
-
-# Set a prompt. Only show the hostname if we are not local.
-
-if [ -n "$SSH_TTY" ]; then
-  PS1=$'%{\e[33m%}%*%{\e[0m%} %m %4~ %{\e[31m%}%#%{\e[0m%} '
-else
-  PS1=$'%{\e[33m%}%*%{\e[0m%} %4~ %{\e[31m%}%#%{\e[0m%} '
-fi
 
 # Setup IRC
 
@@ -86,6 +80,38 @@ fi
 
 autoload -U compinit
 compinit
+
+zstyle '*' hosts wopr.local pegasus.local galactica.local \
+	appletv.local satelefoon.local \
+	82.94.255.141 keizer.soze.com \
+	wopr.norad.org
+
+# Setup the VCS Module
+
+autoload -Uz vcs_info
+ 
+zstyle ':vcs_info:*' stagedstr '%F{28}●'
+zstyle ':vcs_info:*' unstagedstr '%F{11}●'
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{11}%r'
+zstyle ':vcs_info:*' enable git svn hg
+precmd () {
+    zstyle ':vcs_info:*' formats '[%F{green}%b%u%F{blue}]'
+    vcs_info
+}
+ 
+#PROMPT='%F{blue}%n@%m %c${vcs_info_msg_0_}%F{blue} %(?/%F{blue}/%F{red})%% %{$reset_color%}'
+
+# Set a prompt. Only show the hostname if we are not local.
+
+setopt prompt_subst
+
+if [ -n "$SSH_TTY" ]; then
+  PS1=$'%{\e[33m%}%*%{\e[0m%} %m %4~ ${vcs_info_msg_0_} %{\e[31m%}%#%{\e[0m%} '
+else
+  PS1=$'%{\e[33m%}%*%{\e[0m%} %4~ ${vcs_info_msg_0_} %{\e[31m%}%#%{\e[0m%} '
+fi
+
 
 # Source in local setup
 
