@@ -106,7 +106,7 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{11}%r'
 zstyle ':vcs_info:*' enable git svn hg
 precmd () {
-    zstyle ':vcs_info:*' formats '[%F{green}%b%u%F{blue}]'
+    zstyle ':vcs_info:*' formats ' [%F{green}%b%u%F{blue}]'
     vcs_info
 }
  
@@ -117,9 +117,9 @@ precmd () {
 setopt prompt_subst
 
 if [ -n "$SSH_TTY" ]; then
-  PS1=$'%{\e[33m%}%*%{\e[0m%} %m %4~ ${vcs_info_msg_0_} %{\e[31m%}%#%{\e[0m%} '
+  PS1=$'%{\e[33m%}%*%{\e[0m%} %m %4~${vcs_info_msg_0_} %{\e[31m%}%#%{\e[0m%} '
 else
-  PS1=$'%{\e[33m%}%*%{\e[0m%} %4~ ${vcs_info_msg_0_} %{\e[31m%}%#%{\e[0m%} '
+  PS1=$'%{\e[33m%}%*%{\e[0m%} %4~${vcs_info_msg_0_} %{\e[31m%}%#%{\e[0m%} '
 fi
 
 
