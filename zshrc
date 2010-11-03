@@ -17,6 +17,7 @@ watch=(notme)						# Watch others
 
 alias si='sudo su -'
 
+alias ls='ls -GF'
 alias ll='ls -l'
 alias la='ls -la'
 
