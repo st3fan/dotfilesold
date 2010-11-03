@@ -17,6 +17,7 @@ watch=(notme)						# Watch others
 
 alias si='sudo su -'
 
+alias ls='ls -GF'
 alias ll='ls -l'
 alias la='ls -la'
 
@@ -59,6 +60,7 @@ setup_paths /usr/local/mysql
 setup_paths /usr/local/apache-maven
 setup_paths /usr/local/apache-ant
 setup_paths /usr/local/AVRMacPack
+setup_paths /opt/local/Library/Frameworks/Python.framework/Versions/2.6
 
 # If we have less then use that as the pager
 
