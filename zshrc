@@ -28,6 +28,8 @@ alias -g t='tail'
 alias slime='emacs -f slime'
 alias news='emacs -f gnus'
 
+alias home='ssh -2 -p 22 stefan@Pegasus.stefan\\.arentz.members.mac.com.'
+
 # History
 
 HISTFILE=~/.zhistory				# History file
