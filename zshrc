@@ -26,6 +26,8 @@ alias -g t='tail'
 alias slime='emacs -f slime'
 alias news='emacs -f gnus'
 
+alias ta='tmux attach'
+
 # History
 
 HISTFILE=~/.zhistory				# History file
