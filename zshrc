@@ -25,9 +25,11 @@ alias -g m='more'
 alias -g h='head'
 alias -g t='tail'
 
+alias em='emacs'
 alias slime='emacs -f slime'
 alias news='emacs -f gnus'
 
+alias ta='tmux attach'
 alias home='ssh -2 -p 22 stefan@Pegasus.stefan\\.arentz.members.mac.com.'
 alias hudson='ssh -2 -p 22 -L 8080:127.0.0.1:8080 stefan@Pegasus.stefan\\.arentz.members.mac.com.'
 
