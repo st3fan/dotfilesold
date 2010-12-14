@@ -1,0 +1,20 @@
+[ui]
+username = stefan
+
+[email]
+from = Stefan Arentz <stefan@arentz.ca>
+
+[extensions]
+color =
+pager =
+record =
+hgext.extdiff =
+
+[extdiff]
+cmd.ksdiff = /usr/local/bin/ksdiff-wrapper
+opts.ksdiff = hg
+
+[pager]
+pager = LESS='FSRX' less
+ignore = version, help, update, serve, record
+
