@@ -25,6 +25,7 @@ alias -g m='more'
 alias -g h='head'
 alias -g t='tail'
 
+alias em='emacs'
 alias slime='emacs -f slime'
 alias news='emacs -f gnus'
 
