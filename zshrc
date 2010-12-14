@@ -29,6 +29,7 @@ alias slime='emacs -f slime'
 alias news='emacs -f gnus'
 
 alias home='ssh -2 -p 22 stefan@Pegasus.stefan\\.arentz.members.mac.com.'
+alias hudson='ssh -2 -p 22 -L 8080:127.0.0.1:8080 stefan@Pegasus.stefan\\.arentz.members.mac.com.'
 
 # History
 
@@ -46,13 +47,13 @@ export IRCNICK=st3fan
 
 setup_paths() {
   if [ -d "$1/bin" ]; then
-    export PATH="$PATH:$1/bin"
+    export PATH="$1/bin:$PATH"
   fi
   if [ -d "$1/man" ]; then
-    export MANPATH="$MANPATH:$1/man"
+    export MANPATH="$1/man:$MANPATH"
   fi
   if [ -d "$1/share/info" ]; then
-    export INFOPATH="$INFOPATH:$1/share/info"
+    export INFOPATH="$1/share/info:$INFOPATH"
   fi
 }
 
