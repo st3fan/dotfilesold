@@ -1,17 +1,17 @@
 # zshrc - stefan@arentz.ca
 
-bindkey -e							# Use emacs command line editing
-bindkey ' ' magic-space				# Expand history items on space
+bindkey -e				# Use emacs command line editing
+bindkey ' ' magic-space			# Expand history items on space
 
-setopt ignore_eof					# Don't exit shell on ^D
-setopt auto_cd						# Change directories without using cd
-setopt append_history				# Append history (for multiple sessions)
-setopt hist_ignore_dups				# Ignore duplicate commands
-setopt extended_history				# Save timestamps in history file
-setopt no_beep						# No beeping. I hate beeping shells.
-setopt complete_in_word				# Complete inside words
+setopt ignore_eof			# Don't exit shell on ^D
+setopt auto_cd				# Change directories without using cd
+setopt append_history			# Append history (for multiple sessions)
+setopt hist_ignore_dups			# Ignore duplicate commands
+setopt extended_history			# Save timestamps in history file
+setopt no_beep				# No beeping. I hate beeping shells.
+setopt complete_in_word			# Complete inside words
 
-watch=(notme)						# Watch others
+watch=(notme)				# Watch others
 
 # Aliases
 
@@ -25,6 +25,12 @@ alias -g m='more'
 alias -g h='head'
 alias -g t='tail'
 
+# Suffix aliases for OS X
+
+if [ `uname -s` = "Darwin" ]; then
+  alias -s pdf=open			# open pdf files with preview
+fi
+
 alias em='emacs'
 alias slime='emacs -f slime'
 alias news='emacs -f gnus'
@@ -35,9 +41,9 @@ alias hudson='ssh -2 -p 22 -L 8080:127.0.0.1:8080 stefan@Pegasus.stefan\\.arentz
 
 # History
 
-HISTFILE=~/.zhistory				# History file
-HISTSIZE=1000						# Number of lines rememberd
-SAVEHIST=1000						# Number of lines stored in the file
+HISTFILE=~/.zhistory			# History file
+HISTSIZE=1000				# Number of lines rememberd
+SAVEHIST=1000				# Number of lines stored in the file
 
 # Setup IRC
 
