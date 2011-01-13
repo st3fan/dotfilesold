@@ -30,6 +30,7 @@
 (setq c-basic-offset 4)
 (c-set-offset 'arglist-cont-nonempty '+)
 (c-set-offset 'access-label -2);
+(c-set-offset 'innamespace 0);
 
 ;; Source in local file if it exists
 (when (file-readable-p "~/.emacs.local")
