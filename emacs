@@ -3,6 +3,9 @@
 (if (not window-system)
     (menu-bar-mode -1))
 
+(if window-system
+    (load-theme 'wheatgrass))
+
 ;; Do not show the startup screen
 (setq inhibit-splash-screen t)
 
@@ -35,3 +38,4 @@
 ;; Source in local file if it exists
 (when (file-readable-p "~/.emacs.local")
   (load "~/.emacs.local"))
+
