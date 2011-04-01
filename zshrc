@@ -73,7 +73,7 @@ setup_paths /opt/local
 setup_paths /usr/local/mysql
 setup_paths /usr/local/apache-maven
 setup_paths /usr/local/apache-ant
-setup_paths /usr/local/AVRMacPack
+setup_paths /usr/local/CrossPack-AVR
 setup_paths /opt/local/Library/Frameworks/Python.framework/Versions/2.6
 
 # If we have less then use that as the pager
@@ -150,6 +150,13 @@ if [ -x /usr/bin/sw_vers ]; then
       ;;
   esac
 fi
+
+hacklabtunnels() {
+  echo "Router MRTG at http://localhost:9080/mrtg/router"
+  echo "Switch MRTG at http://localhost:9080/mrtg/switch"
+  echo "m0n0wall at    http://localhost:9443/"
+  ssh -N -L 9080:doorbox:80 -L 9443:192.168.111.1:443 shell.hacklab.to
+}
 
 # Source in local setup
 
