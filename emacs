@@ -19,7 +19,7 @@
 (setq column-number-mode t)
 
 ;; Goto line is M-g
-(global-set-key "\M-g" 'goto-line)
+;;(global-set-key "\M-g" 'goto-line)
 
 ;; Make sure emacs does not use tabs but only spaces
 (setq-default indent-tabs-mode nil)
