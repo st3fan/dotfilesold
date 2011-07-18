@@ -8,8 +8,23 @@ set hidden
 set showmatch
 set laststatus=2
 set statusline=%<%F%=\ [%M%R%H%Y]\ (%(%l,%c%))
+set visualbell
+set wrap
+set title
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set smarttab
+set expandtab
 
 if has('gui_running')
   set background=dark
   colorscheme solarized
 endif
+
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
+
