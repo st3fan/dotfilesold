@@ -3,8 +3,8 @@
 (if (not window-system)
     (menu-bar-mode -1))
 
-(if window-system
-    (load-theme 'wheatgrass))
+;;(if window-system
+;;    (load-theme 'wheatgrass))
 
 ;; Do not show the startup screen
 (setq inhibit-splash-screen t)
