@@ -68,6 +68,7 @@ setup_paths() {
   fi
 }
 
+setup_paths "$HOME"
 setup_paths /usr/local
 setup_paths /opt/local
 setup_paths /usr/local/mysql
@@ -107,10 +108,10 @@ fi
 autoload -U compinit
 compinit
 
-zstyle '*' hosts wopr.local pegasus.local galactica.local \
+zstyle '*' hosts viper.local pegasus.local galactica.local \
 	appletv.local satelefoon.local \
 	82.94.255.141 keizer.soze.com \
-	wopr.norad.org
+	66.228.46.172 wopr.norad.org
 
 # Setup the VCS Module
 

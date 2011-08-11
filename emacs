@@ -3,8 +3,8 @@
 (if (not window-system)
     (menu-bar-mode -1))
 
-(if window-system
-    (load-theme 'wheatgrass))
+;;(if window-system
+;;    (load-theme 'wheatgrass))
 
 ;; Do not show the startup screen
 (setq inhibit-splash-screen t)
@@ -21,8 +21,13 @@
 ;; Show the column in the status bar
 (setq column-number-mode t)
 
-;; Goto line is M-g
-;;(global-set-key "\M-g" 'goto-line)
+;; Map option-up/down do page-up/down
+(global-set-key (kbd "ESC <up>") 'scroll-down)
+(global-set-key (kbd "ESC <down>") 'scroll-up)
+
+;; Map option-up/down do page-up/down
+(global-set-key (kbd "M-b") 'previous-buffer)
+(global-set-key (kbd "M-f") 'next-buffer)
 
 ;; Make sure emacs does not use tabs but only spaces
 (setq-default indent-tabs-mode nil)
@@ -38,4 +43,3 @@
 ;; Source in local file if it exists
 (when (file-readable-p "~/.emacs.local")
   (load "~/.emacs.local"))
-
