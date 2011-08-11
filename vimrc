@@ -9,7 +9,5 @@ set showmatch
 set laststatus=2
 set statusline=%<%F%=\ [%M%R%H%Y]\ (%(%l,%c%))
 
-if has('gui_running')
-  set background=dark
-  colorscheme solarized
-endif
+set background=dark
+colorscheme solarized
