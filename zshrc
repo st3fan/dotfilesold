@@ -108,8 +108,8 @@ fi
 autoload -U compinit
 compinit
 
-zstyle '*' hosts viper.local pegasus.local galactica.local \
-	appletv.local satelefoon.local \
+zstyle '*' hosts pegasus.local galactica.local viper.local \
+	home.local appletv.local satelefoon.local \
 	82.94.255.141 keizer.soze.com \
 	66.228.46.172 wopr.norad.org
 
