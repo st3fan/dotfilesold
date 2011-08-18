@@ -65,6 +65,7 @@ setup_paths() {
   fi
 }
 
+setup_paths "$HOME"
 setup_paths /usr/local
 setup_paths /opt/local
 setup_paths /usr/local/mysql
