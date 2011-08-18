@@ -21,8 +21,13 @@
 ;; Show the column in the status bar
 (setq column-number-mode t)
 
-;; Goto line is M-g
-(global-set-key "\M-g" 'goto-line)
+;; Map option-up/down do page-up/down
+(global-set-key (kbd "ESC <up>") 'scroll-down)
+(global-set-key (kbd "ESC <down>") 'scroll-up)
+
+;; Map option-up/down do page-up/down
+(global-set-key (kbd "M-b") 'previous-buffer)
+(global-set-key (kbd "M-f") 'next-buffer)
 
 ;; Make sure emacs does not use tabs but only spaces
 (setq-default indent-tabs-mode nil)

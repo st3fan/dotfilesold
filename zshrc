@@ -57,6 +57,9 @@ setup_paths() {
   if [ -d "$1/bin" ]; then
     export PATH="$1/bin:$PATH"
   fi
+  if [ -d "$1/sbin" ]; then
+    export PATH="$1/sbin:$PATH"
+  fi
   if [ -d "$1/man" ]; then
     export MANPATH="$1/man:$MANPATH"
   fi
@@ -134,6 +137,19 @@ if [ -n "$SSH_TTY" ]; then
   PS1=$'%{\e[33m%}%*%{\e[0m%} %m %4~${vcs_info_msg_0_} %{\e[31m%}%#%{\e[0m%} '
 else
   PS1=$'%{\e[33m%}%*%{\e[0m%} %4~${vcs_info_msg_0_} %{\e[31m%}%#%{\e[0m%} '
+fi
+
+if [ -x /usr/bin/sw_vers ]; then
+  case `/usr/bin/sw_vers -productVersion` in
+    ('10.7')
+      # This is where Brew puts local Python modules
+      export PYTHONPATH="/usr/local/lib/python2.7/site-packages/:$PYTHONPATH"
+      ;;
+    ('10.6')
+      # This is where Brew puts local Python modules
+      export PYTHONPATH="/usr/local/lib/python2.6/site-packages/:$PYTHONPATH"
+      ;;
+  esac
 fi
 
 hacklabtunnels() {

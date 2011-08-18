@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/stefan/Library/Application Support/Firefox/Profiles/7k0jhi2e.Extensions/extensions/hello.xpi/chrome'
+let g:netrw_dirhist_2='/Users/stefan/Code/extensions/hello/chrome'
+let g:netrw_dirhist_3='/Users/stefan/tmp/addon-sdk-1.0/packages/api-utils/lib/passwords'

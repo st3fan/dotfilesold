@@ -18,10 +18,8 @@ set shiftwidth=4
 set smarttab
 set expandtab
 
-if has('gui_running')
-  set background=dark
-  colorscheme solarized
-endif
+set background=dark
+colorscheme solarized
 
 syntax enable
 set background=dark
