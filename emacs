@@ -35,7 +35,10 @@
 (c-set-offset 'access-label -2);
 (c-set-offset 'innamespace 0);
 
+;; Auto chmod +x for scripts
+(add-hook 'after-save-hook
+  'executable-make-buffer-file-executable-if-script-p)
+
 ;; Source in local file if it exists
 (when (file-readable-p "~/.emacs.local")
   (load "~/.emacs.local"))
-
