@@ -77,6 +77,34 @@ setup_paths /usr/local/apache-ant
 setup_paths /usr/local/CrossPack-AVR
 setup_paths /opt/local/Library/Frameworks/Python.framework/Versions/2.6
 
+# For EC2
+
+if [ -d /usr/local/ec2-api-tools ]; then
+  export EC2_HOME=/usr/local/ec2-api-tools
+  setup_paths /usr/local/ec2-api-tools
+fi
+
+if [ -d /usr/local/IAMCli ]; then
+  export AWS_IAM_HOME=/usr/local/IAMCli
+  setup_paths /usr/local/IAMCli
+fi
+
+if [ -x "`which ec2din`" ]; then
+  alias ecc-show-instances=ec2din \
+    | grep ^INSTANCE \
+    | grep -v terminated \
+    | awk '{ printf("%s %s %s %s\n", $2, $4, $5, $9) }'
+fi
+
+alias setup-aws-pancake="source ~/Library/Amazon/Pancake/setup.sh"
+alias setup-aws-personal="source ~/Library/Amazon/Personal/setup.sh"
+
+# Setup JAVA_HOME through OSX's java_home
+
+if [ -x /usr/libexec/java_home ]; then
+  export JAVA_HOME=$(/usr/libexec/java_home)
+fi
+
 # If we have less then use that as the pager
 
 if [ -x "`which less`" ]; then
@@ -94,15 +122,6 @@ else
   export EDITOR=`which vi`
 fi
 
-# For EC2
-
-if [ -x "`which ec2din`" ]; then
-  alias ecc-show-instances=ec2din \
-    | grep ^INSTANCE \
-    | grep -v terminated \
-    | awk '{ printf("%s %s %s %s\n", $2, $4, $5, $9) }'
-fi
-
 # Setup completion
 
 autoload -U compinit
@@ -111,7 +130,9 @@ compinit
 zstyle '*' hosts pegasus.local galactica.local viper.local \
 	home.local appletv.local satelefoon.local \
 	82.94.255.141 keizer.soze.com \
-	66.228.46.172 wopr.norad.org
+	66.228.46.172 wopr.norad.org \
+    kipdynamite.thedutchrepublic.com \
+    hg.mozilla.org office.mozilla.org mpt-vpn.mozilla.com
 
 # Setup the VCS Module
 
