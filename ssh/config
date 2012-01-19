@@ -1,0 +1,15 @@
+
+Host *
+  KeepAlive yes
+  ForwardAgent yes
+
+Host hg.mozilla.org
+  User stefan@arentz.ca
+
+Host office.mozilla.org
+  User sarentz
+
+Host mpt-vpn.mozilla.com
+  User sarentz
+
+
