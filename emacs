@@ -43,20 +43,4 @@
 ;; Source in local file if it exists
 (when (file-readable-p "~/.emacs.local")
   (load "~/.emacs.local"))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(blink-cursor-mode nil)
- '(column-number-mode t)
- '(custom-safe-themes (quote ("1440d751f5ef51f9245f8910113daee99848e2c0" "357f98f42f4d5763f3bb6503eb18b9b73c7b9ba4" "485737acc3bedc0318a567f1c0f5e7ed2dfde3fb" default)))
- '(display-time-mode t)
- '(show-paren-mode t)
- '(tool-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
