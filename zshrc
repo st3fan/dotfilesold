@@ -15,7 +15,7 @@ watch=(notme)				# Watch others
 
 # Aliases
 
-alias si='sudo su -'
+alias si='sudo zsh'
 
 alias ls='ls -GF'
 alias ll='ls -l'
@@ -159,9 +159,10 @@ precmd () {
 setopt prompt_subst
 
 if [ -n "$SSH_TTY" ]; then
-  PS1=$'%{\e[33m%}%*%{\e[0m%} %m %4~${vcs_info_msg_0_} %{\e[31m%}%#%{\e[0m%} '
+  # If we are remote then we display the machine name
+  PS1=$'%m %4~${vcs_info_msg_0_} %{\e[31m%}%#%{\e[0m%} '
 else
-  PS1=$'%{\e[33m%}%*%{\e[0m%} %4~${vcs_info_msg_0_} %{\e[31m%}%#%{\e[0m%} '
+  PS1=$'%4~${vcs_info_msg_0_} %{\e[31m%}%#%{\e[0m%} '
 fi
 
 if [ -x /usr/bin/sw_vers ]; then
@@ -183,6 +184,10 @@ hacklabtunnels() {
   echo "m0n0wall at    http://localhost:9443/"
   ssh -N -L 9080:doorbox:80 -L 9443:192.168.111.1:443 shell.hacklab.to
 }
+
+# PostgreSQL
+
+alias start-postgresql="postgres -D /usr/local/var/postgres"
 
 # Source in local setup
 
