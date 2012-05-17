@@ -102,6 +102,7 @@ alias setup-aws-personal="source ~/Library/Amazon/Personal/setup.sh"
 alias ssh-thumbnailer-api="ssh -i ~/Library/Amazon/Pancake/pancake.pem ec2-user@107.21.203.44"
 alias ssh-thumbnailer-worker1="ssh -i ~/Library/Amazon/Pancake/pancake.pem ec2-user@ec2-107-21-165-131.compute-1.amazonaws.com"
 alias ssh-thumbnailer-worker2="ssh -i ~/Library/Amazon/Pancake/pancake.pem ec2-user@ec2-174-129-166-247.compute-1.amazonaws.com"
+alias ssh-thumbnailer-staging="ssh -i ~/Library/Amazon/Pancake/pancake.pem ec2-user@ec2-50-19-178-120.compute-1.amazonaws.com"
 
 # Setup JAVA_HOME through OSX's java_home
 

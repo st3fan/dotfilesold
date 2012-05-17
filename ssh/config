@@ -12,4 +12,6 @@ Host office.mozilla.org
 Host mpt-vpn.mozilla.com
   User sarentz
 
+Host people.mozilla.com
+  User sarentz
 

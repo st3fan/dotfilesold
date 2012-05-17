@@ -1,13 +1,4 @@
 
-if [ -f ~/.bashrc ]; then
-  source ~/.bashrc
-fi
-
-if [ -x /usr/local/bin/brew ]; then
-  if [ -x /usr/local/bin/grc ]; then
-    source "`brew --prefix grc`/etc/grc.bashrc"
-  fi
-fi
 
 alias si='sudo bash'
 alias ls='ls -GF'
@@ -54,4 +45,32 @@ else
 fi
 
 complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
+
+# Brew specific stuff
+
+if [ -x /usr/local/bin/brew ]; then
+  if [ -x /usr/local/bin/grc ]; then
+    source "`brew --prefix grc`/etc/grc.bashrc"
+  fi
+fi
+
+if [ -d "/usr/local/share/python" ]; then
+  export PATH="/usr/local/share/python:$PATH"
+fi
+
+# Amazon Stuff
+
+alias setup-aws-pancake="source ~/Library/Amazon/Pancake/setup.sh"
+alias setup-aws-personal="source ~/Library/Amazon/Personal/setup.sh"
+
+alias ssh-thumbnailer-api="ssh -i ~/Library/Amazon/Pancake/pancake.pem ec2-user@ec2-50-19-178-120.compute-1.amazonaws.com"
+alias ssh-thumbnailer-worker1="ssh -i ~/Library/Amazon/Pancake/pancake.pem ec2-user@ec2-50-19-178-155.compute-1.amazonaws.com"
+alias ssh-thumbnailer-worker2="ssh -i ~/Library/Amazon/Pancake/pancake.pem ec2-user@ec2-75-101-241-13.compute-1.amazonaws.com"
+alias ssh-thumbnailer-worker2="ssh -i ~/Library/Amazon/Pancake/pancake.pem ec2-user@ec2-107-22-26-194.compute-1.amazonaws.com"
+
+# Load the bashrc
+
+if [ -f ~/.bashrc ]; then
+  source ~/.bashrc
+fi
 
