@@ -1,17 +1,20 @@
 # zshrc - stefan@arentz.ca
 
-bindkey -e				# Use emacs command line editing
-bindkey ' ' magic-space			# Expand history items on space
+bindkey -e							# Use emacs command line editing
+bindkey ' ' magic-space				# Expand history items on space
 
-setopt ignore_eof			# Don't exit shell on ^D
-setopt auto_cd				# Change directories without using cd
-setopt append_history			# Append history (for multiple sessions)
-setopt hist_ignore_dups			# Ignore duplicate commands
-setopt extended_history			# Save timestamps in history file
-setopt no_beep				# No beeping. I hate beeping shells.
-setopt complete_in_word			# Complete inside words
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
 
-watch=(notme)				# Watch others
+setopt ignore_eof					# Don't exit shell on ^D
+setopt auto_cd						# Change directories without using cd
+setopt append_history				# Append history (for multiple sessions)
+setopt hist_ignore_dups				# Ignore duplicate commands
+setopt extended_history				# Save timestamps in history file
+setopt no_beep						# No beeping. I hate beeping shells.
+setopt complete_in_word				# Complete inside words
+
+watch=(notme)						# Watch others
 
 # Aliases
 
@@ -28,22 +31,25 @@ alias -g t='tail'
 # Suffix aliases for OS X
 
 if [ `uname -s` = "Darwin" ]; then
-  alias -s pdf=open			# open pdf files with preview
+  alias -s pdf=open					# open pdf files with preview
 fi
 
 alias em='emacs'
 alias slime='emacs -f slime'
 alias news='emacs -f gnus'
-
-alias ta='tmux attach'
-alias home='ssh -2 -p 22 stefan@Pegasus.stefan\\.arentz.members.mac.com.'
-alias hudson='ssh -2 -p 22 -L 8080:127.0.0.1:8080 stefan@Pegasus.stefan\\.arentz.members.mac.com.'
+alias ta='tmux attach -d'
 
 # History
 
-HISTFILE=~/.zhistory			# History file
-HISTSIZE=1000				# Number of lines rememberd
-SAVEHIST=1000				# Number of lines stored in the file
+HISTFILE=~/.zhistory				# History file
+HISTSIZE=1000						# Number of lines rememberd
+SAVEHIST=1000						# Number of lines stored in the file
+
+# Allow history editing with $EDITOR
+autoload -U edit-command-line		
+zle -N edit-command-line
+bindkey '\ee' edit-command-line
+
 
 # Setup IRC
 
@@ -77,6 +83,18 @@ setup_paths /usr/local/apache-ant
 setup_paths /usr/local/CrossPack-AVR
 setup_paths /opt/local/Library/Frameworks/Python.framework/Versions/2.6
 
+# Android SDK Stuff
+
+if [ -d "$HOME/Google/android-sdk-macosx" ]; then
+	export PATH="$PATH:$HOME/Google/android-sdk-macosx/tools"
+	export PATH="$PATH:$HOME/Google/android-sdk-macosx/platform-tools"
+fi
+
+if [ -d "$HOME/Google/android-sdk-linux" ]; then
+	export PATH="$PATH:$HOME/Google/android-sdk-linux/tools"
+	export PATH="$PATH:$HOME/Google/android-sdk-linux/platform-tools"
+fi
+
 # For EC2
 
 if [ -d /usr/local/ec2-api-tools ]; then
@@ -95,14 +113,6 @@ if [ -x "`which ec2din`" ]; then
     | grep -v terminated \
     | awk '{ printf("%s %s %s %s\n", $2, $4, $5, $9) }'
 fi
-
-alias setup-aws-pancake="source ~/Library/Amazon/Pancake/setup.sh"
-alias setup-aws-personal="source ~/Library/Amazon/Personal/setup.sh"
-
-alias ssh-thumbnailer-api="ssh -i ~/Library/Amazon/Pancake/pancake.pem ec2-user@107.21.203.44"
-alias ssh-thumbnailer-worker1="ssh -i ~/Library/Amazon/Pancake/pancake.pem ec2-user@ec2-107-21-165-131.compute-1.amazonaws.com"
-alias ssh-thumbnailer-worker2="ssh -i ~/Library/Amazon/Pancake/pancake.pem ec2-user@ec2-174-129-166-247.compute-1.amazonaws.com"
-alias ssh-thumbnailer-staging="ssh -i ~/Library/Amazon/Pancake/pancake.pem ec2-user@ec2-50-19-178-120.compute-1.amazonaws.com"
 
 # Setup JAVA_HOME through OSX's java_home
 
@@ -141,29 +151,25 @@ zstyle '*' hosts pegasus.local galactica.local viper.local \
 
 # Setup the VCS Module
 
-autoload -Uz vcs_info
+#autoload -Uz vcs_info
+# 
+#zstyle ':vcs_info:*' stagedstr '%F{28}●'
+#zstyle ':vcs_info:*' unstagedstr '%F{11}●'
+#zstyle ':vcs_info:*' check-for-changes true
+#zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{11}%r'
+#zstyle ':vcs_info:*' enable git svn hg
+#precmd () {
+#    zstyle ':vcs_info:*' formats ' [%F{green}%b%u%F{blue}]'
+#    vcs_info
+#}
  
-zstyle ':vcs_info:*' stagedstr '%F{28}●'
-zstyle ':vcs_info:*' unstagedstr '%F{11}●'
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{11}%r'
-zstyle ':vcs_info:*' enable git svn hg
-precmd () {
-    zstyle ':vcs_info:*' formats ' [%F{green}%b%u%F{blue}]'
-    vcs_info
-}
- 
-#PROMPT='%F{blue}%n@%m %c${vcs_info_msg_0_}%F{blue} %(?/%F{blue}/%F{red})%% %{$reset_color%}'
-
 # Set a prompt. Only show the hostname if we are not local.
-
-setopt prompt_subst
 
 if [ -n "$SSH_TTY" ]; then
   # If we are remote then we display the machine name
-  PS1=$'%m %4~${vcs_info_msg_0_} %{\e[31m%}%#%{\e[0m%} '
+  PS1=$'%m %4 %{\e[31m%}%#%{\e[0m%} '
 else
-  PS1=$'%4~${vcs_info_msg_0_} %{\e[31m%}%#%{\e[0m%} '
+  PS1=$'%4 %{\e[31m%}%#%{\e[0m%} '
 fi
 
 if [ -x /usr/bin/sw_vers ]; then
@@ -178,13 +184,6 @@ if [ -x /usr/bin/sw_vers ]; then
       ;;
   esac
 fi
-
-hacklabtunnels() {
-  echo "Router MRTG at http://localhost:9080/mrtg/router"
-  echo "Switch MRTG at http://localhost:9080/mrtg/switch"
-  echo "m0n0wall at    http://localhost:9443/"
-  ssh -N -L 9080:doorbox:80 -L 9443:192.168.111.1:443 shell.hacklab.to
-}
 
 # PostgreSQL
 
