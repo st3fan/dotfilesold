@@ -18,7 +18,7 @@ watch=(notme)						# Watch others
 
 # Aliases
 
-alias si='sudo zsh'
+alias si='sudo -E zsh'
 
 alias ls='ls -GF'
 alias ll='ls -l'
