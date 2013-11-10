@@ -74,3 +74,5 @@ if [ -f ~/.bashrc ]; then
   source ~/.bashrc
 fi
 
+
+export PATH="/Applications/microchip/xc32/v1.20/bin":$PATH

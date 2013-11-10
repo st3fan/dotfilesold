@@ -20,3 +20,5 @@ export PS1
 
 source ~/Code/dotfiles/bashrc_mercurial_completion
 
+
+export PATH="/Applications/microchip/xc32/v1.20/bin":$PATH

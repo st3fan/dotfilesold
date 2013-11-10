@@ -1,5 +1,5 @@
 [ui]
-username = Stefan Arentz <stefan@arentz.ca>
+username = Stefan Arentz <sarentz@mozilla.com>
 ssh = ssh -C
 merge = merge
 
@@ -8,11 +8,16 @@ untrack = rm -Af
 unknown = status --unknown --no-status
 ignored = status --ignored --no-status
 
+[diff]
+git = 1
+unified = 8
+
 [extensions]
 color =
 pager =
 record =
 hgext.extdiff =
+mq =
 
 [extdiff]
 cmd.ksdiff = /usr/local/bin/ksdiff-wrapper
