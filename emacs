@@ -1,79 +1,85 @@
+(require 'package)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives '("melpa"     . "http://melpa.milkbox.net/packages/")  t)
+(package-initialize)
 
-;; Do not show the startup screen
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(defvar my-packages
+  '(cyberpunk-theme
+    clojure-mode
+    cider
+    go-mode
+    smartparens
+    expand-region
+    rainbow-delimiters
+    magit)
+  "list of packages to ensure are installed at launch.")
+
+(dolist (p my-packages)
+  (when (not (package-installed-p p))
+    (package-install p)))
+
+(load-theme 'cyberpunk t)
+
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+
+(transient-mark-mode 1) ; highlight text selection
+(delete-selection-mode 1) ; delete seleted text when typing
+
+(show-paren-mode 1) ; turn on paren match highlighting
+(setq show-paren-delay 0) ; disable delay
+(setq show-paren-style 'parenthesis) ; highlight entire bracket expression
+
+(column-number-mode 1)
+
+(setq make-backup-files nil) ; stop creating those backup~ files
+(setq auto-save-default nil) ; stop creating those #autosave# files
+
+(recentf-mode 1) ; keep a list of recently opened files
+
+(global-hl-line-mode 1) ; turn on highlighting current line
+
 (setq inhibit-splash-screen t)
 
-;; Enable paren mode
-(require 'paren)
-(show-paren-mode 1)
+(setq display-time-24hr-format 1)
+(display-time-mode 1)
 
-;; Show a clock in the status bar
-(display-time)
-(setq display-time-24hr-format t)
-(setq display-time-day-and-date t)
-
-;; Show the column in the status bar
-(setq column-number-mode t)
-
-;; Map option-up/down do page-up/down
-(global-set-key (kbd "M-<up>") 'scroll-down)
-(global-set-key (kbd "M-<down>") 'scroll-up)
-
-;; Make sure emacs does not use tabs but only spaces
 (setq-default indent-tabs-mode nil)
 
-;; C Style that I prefer
-(setq c-default-style "ellemtel")
-(setq c-electric-flag t)
-(setq c-basic-offset 4)
-(c-set-offset 'arglist-cont-nonempty '+)
-(c-set-offset 'access-label -2);
-(c-set-offset 'innamespace 0);
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 
-;; Auto chmod +x for scripts
+;;
+
+(require 'expand-region)
+(global-set-key (kbd "M-e") 'er/expand-region)
+
+;;
+
+(require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+;;
+
 (add-hook 'after-save-hook
   'executable-make-buffer-file-executable-if-script-p)
 
-;; Turn off gui stuff that i don't care about
-;;(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+;;
 
-(blink-cursor-mode nil)
+(smartparens-global-mode t)
 
-;; Source in local file if it exists
-(when (file-readable-p "~/.emacs.local")
-  (load "~/.emacs.local"))
+;;
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(blink-cursor-mode nil)
- '(column-number-mode t)
- '(display-time-mode t)
- '(show-paren-mode t)
- '(tool-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(setq nrepl-hide-special-buffers t)
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
-(require 'package)
+(setq cider-repl-history-size 1000)
+(setq cider-repl-history-file "~/.cider-repl-history")
 
-;; Add the original Emacs Lisp Package Archive
-(add-to-list 'package-archives
-             '("elpa" . "http://tromey.com/elpa/"))
-;; Add the user-contributed repository
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
-
-(defun beautify-json ()
-    (interactive)
-      (let ((b (if mark-active (min (point) (mark)) (point-min)))
-      		        (e (if mark-active (max (point) (mark)) (point-max))))
-      	    (shell-command-on-region b e
-      	    						      "python -mjson.tool" (current-buffer) t)))
-
+(add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'cider-repl-mode-hook 'smartparens-strict-mode)
