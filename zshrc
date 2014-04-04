@@ -195,3 +195,13 @@ if [ -f ".zshrc.local" ]; then
   source .zshrc.local
 fi
 
+#
+
+unalias run-help
+autoload run-help
+HELPDIR=/usr/local/share/zsh/helpfiles
+
+export JBOSS_HOME=/usr/local/opt/wildfly-as/libexec
+export PATH=${PATH}:${JBOSS_HOME}/bin
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+
